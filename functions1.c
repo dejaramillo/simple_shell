@@ -122,7 +122,7 @@ int compare(char *str1, char *str2)
 		else
 		{
 			diff = str1[x] - str2[x];
-			return(diff);
+			return (diff);
 		}
 	}
 
