@@ -1,0 +1,193 @@
+.TH SHELL 1 "November 2020" "Holberton School" "SHELL"
+
+.SH NAME
+.B SHELL\fR \- simple UNIX command interpreter
+
+.SH SYNOPSIS
+.B SHELL\fR \-- \fB./SHELL\fR -- [\fifilename\fR] | \fB./SHELL 
+
+.SH DESCRIPTION
+.B SHELL\fR is a simple UNIX command language interpreter that reads commands from standard input and executes them.
+
+.B Invocation
+.in +2n
+\fBSHELL\fR can be invoked both interactively and non-interactively.
+
+If \fBSHELL\fR is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+
+If \fBSHELL\fR is invoked with standard input connected to a terminal, an \fIinteractive\fR shell is opened.
+When it's executing in interactive mode, \fBSHELL\fR displays the prompt \fB" (  ͡°  ͜ʖ  ͡°)$ "\fR when it is ready to read a command.
+
+Alternatively, if command line arguments are supplied upon invocation, \fBSHELL\fR treats the first argument as a file from which to read commands.
+The supplied file should contain one command per line.
+.B SHELL\fR runs each of the commands contained in the file in order before exiting.
+.in
+
+." 
+." .B Environment
+." .in +2n
+." Upon invocation, \fBshellby\fR receives and copies the environment of the parent process in which it was exeucted.
+." This \fBenvironment\fR is an array of \fIname-value\fR strings describing variables in the format \fINAME=VALUE\fR.
+." .in
+
+.B Command Execution
+.in +2n
+After receiving a command, \fBSHELL\fR tokenizes it into words using \fB" "\fR as a delimiter.
+The first word is considered the command and all remaining words are considered arguments to that command.
+.B SHELL\fR then proceeds with the following actions:
+
+.RS
+1. If the first character of the command is a slash (\fI\\\fR), the shell ommits an external validation for searching his real path of execution.
+If the path and program exists, \fBSHELL\fR just start executing accordly his other parameters.
+.RE
+
+.RS
+2. If the first character of the command is none of a slash (\fI\\\fR), nor a SHELL builtins, \fBSHELL\fR searches each element of the
+\fBPATH\fR environmental variable for a directory containing an executable file by that name.
+.RE
+
+.RS
+3. If the first command is a \fBshell builtins\fR,
+the shell executes a separate process according the selection chosen by the user
+
+
+
+
+
+.B SHELL Builtin Commands
+
+
+.B exit
+.RS
+Usage: \fBexit\fR
+
+Exits the shell.
+
+The command is interpreted as \fBexit 0\fR.
+
+
+.RE
+.in +0	
+.B env
+.RS
+Usage: \fBenv\fR
+
+Prints the current environment.
+.RE
+
+
+
+.RE
+.RE
+
+
+
+.SH EXAMPLE
+.TS
+left;
+cB
+cB.
+
+\fB(  ͡°  ͜ʖ  ͡°)$\fRls -al\fR                                     \fB
+\fR-rw-rw-r-- 1 soler soler  1985 nov 25 12:59 functions1.c  \fR
+\fR-rw-rw-r-- 1 soler soler  1257 nov 25 12:59 functions2.c  \fR
+\fR-rw-rw-r-- 1 soler soler  2275 nov 25 12:59 functions.c   \fR
+\fR-rwxrwxr-x 1 soler soler 13894 nov 25 13:59 SHELL         \fR
+\fR-rw-rw-r-- 1 soler soler   694 nov 25 13:00 shell.h       \fR
+\fR-rw-rw-r-- 1 soler soler   641 nov 25 13:01 simple_shell.c\fR
+
+_
+
+\fB(  ͡°  ͜ʖ  ͡°)$\fR/bin/ls -al\fR                                \fB
+\fR-rw-rw-r-- 1 soler soler  1985 nov 25 12:59 functions1.c  \fR
+\fR-rw-rw-r-- 1 soler soler  1257 nov 25 12:59 functions2.c  \fR
+\fR-rw-rw-r-- 1 soler soler  2275 nov 25 12:59 functions.c   \fR
+\fR-rwxrwxr-x 1 soler soler 13894 nov 25 13:59 SHELL         \fR
+\fR-rw-rw-r-- 1 soler soler   694 nov 25 13:00 shell.h       \fR
+\fR-rw-rw-r-- 1 soler soler   641 nov 25 13:01 simple_shell.c\fR
+
+_
+
+
+\fB(  ͡°  ͜ʖ  ͡°)$\fR/bin/lss -al\fR                              \fB
+\fR/bin/lss: Invalid command                                \fR
+_
+.TE
+.RE
+
+
+
+.SH AUTHOR
+.PP
+Written by Jose N. Soler
+
+
+
+.SH REPORTING BUGS
+.PP
+For reporting troubleshoots executing the program with edge cases or memory leak information, please reffer to someone of the colaborators in this project, or be free to send us a mail to cisfun.com
+
+.PP
+ 
+
+.SH EXIT STATUS
+.TP
+.B
+0
+Success in execution.
+
+.TP
+.B
+1
+\fIArguments\fP is NULL or empty.
+
+
+If the \fBBuilt-in \fIexit\fR\fR is selected. 
+
+
+.TP
+.B
+Exit status defined from the program executed.
+
+
+.SH SEE ALSO
+.BR https://www.holberton.com
+.PP
+.B Full project documentation based on a project to emulate a copy of a interactive shell.
+
+
+.SH COPYRIGHT
+.PP
+Copyright 2020 HolbertonSchool. CH13.
+.PP 
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+https://www.cisfun.com
+
+
+.SH CREDITS
+.PP
+Holberton School - Cohort 13
+.TP
+Project simple shell by:
+
+.PP
+.B
+-https://www.github.com/dejaramillo
+
+.PP
+.B
+-https://www.github.com/JoseNSoler
+
+.SH
+.PP
+
+
