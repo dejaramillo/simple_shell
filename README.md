@@ -3,7 +3,10 @@ _simple_shell is a program that runs similarly to the GNU-linux shell, usingsimi
 
 ![](https://i.imgur.com/L9hVkTf.png)
 
-## starting with 🔧
+## Flow-chart
+You can see full scale image in [](./in this link)
+
+## Starting with 🔧
 _The SHELL command is executed which will start the execution process of the program with the call to write that prints the shell prompt, then enters an infinite loop in which the user is asked for the input data._
 
 _Depending on the type of command entered into the system, different types of validations will be made, which generate an execution response according to the syntax._
