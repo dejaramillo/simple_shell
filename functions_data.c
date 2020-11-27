@@ -71,9 +71,9 @@ char *_concat(char *str, char *strconcat)
 
 char **divide_string(char *str, char *divide)
 {
-	char *token, *token2, *str2;
+	char *token = NULL, *token2 = NULL, *str2 = NULL;
 	int strings = 0, i = 0;
-	char **stringArr;
+	char **stringArr = NULL;
 
 	str2 = _strdup(str);
 	token = strtok(str, divide);
