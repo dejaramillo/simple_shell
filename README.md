@@ -16,7 +16,7 @@ The repository contains the following files:
 |   **File**   |   **Description**   |
 | -------------- | --------------------- |
 |[AUTHORS](./AUTHORS) | Contains info about authors of the project |
-|[man_1_simple_shell](./man_1_simple_shell) | Man page for the created shell |
+|[man_simple_shell](./man_simple_shell) | Man page for the created shell |
 |[shell.h](./shell.h)| Header file containing all function prototypes and struct declarations |
 |[simple_shell.c](./simple_shell.c) | The main function |
 |[functions_data.c](./functions_data.c) | `_strdup` function, `divide_string` function, `space_delete` function,`_concat` function and `free_mem_string` function |
