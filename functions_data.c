@@ -80,13 +80,14 @@ char **divide_string(char *str, char *divide)
 
 	while (token)
 	{
-		token = strtok(NULL, divide);
 		strings++;
+		token = strtok(NULL, divide);
 	}
 
-	token2 = strtok(str2, divide);
-
 	stringArr = malloc(sizeof(char *) * (strings + 1));
+	if (!stringArr)
+		return (NULL);
+	token2 = strtok(str2, divide);
 
 	while (token2)
 	{
@@ -95,9 +96,9 @@ char **divide_string(char *str, char *divide)
 		i++;
 	}
 
-	stringArr[i] = '\0';
-	free(str2);
+	stringArr[i] = NULL;
 	free(token2);
+	free(str2);
 	return (stringArr);
 }
 

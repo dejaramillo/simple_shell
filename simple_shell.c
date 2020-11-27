@@ -8,13 +8,14 @@
 int main(void)
 {
 
-	char *buff = NULL, *command;
+	char *buff = NULL, space[1] = " ";
 	char e_status[6] = "exit", env_status[4] = "env";
 
 	size_t lenght = 0;
 	int bt, comp_val;
 
-	write(STDOUT_FILENO, "( ͡° ͜ʖ ͡°)$ ", 20);
+	if (isatty(STDIN_FILENO) > 0)
+		write(STDOUT_FILENO, "( ͡° ͜ʖ ͡°)$ ", 20);
 	while (1)
 	{
 		bt = getline(&buff, &lenght, stdin);
@@ -22,27 +23,31 @@ int main(void)
 		{
 			break;
 		}
+		buff[bt - 1] = '\0';
 		comp_val = compare(e_status, buff);
 
 		if (comp_val == 0)
+		{
+			free(buff);
 			exit(1);
-
+		}
 		comp_val = 0;
 		comp_val = compare(env_status, buff);
 		if (comp_val == 0)
 		{
-			env(buff);
+			env();
+		}
+		else
+		{
+			if(buff[0] == space[0])
+				buff = space_delete(buff, 0);
+			exe(divide_string(buff, " "), buff);
 		}
 
-		buff[bt - 1] = '\0';
 
-		command = space_delete(buff, 0);
-		exe(divide_string(command, " "), buff);
-		write(1, "( ͡° ͜ʖ ͡°)$ ", 20);
+		if (isatty(STDIN_FILENO) > 0)
+			write(1, "( ͡° ͜ʖ ͡°)$ ", 20);
 
 	}
-
-	free(buff);
-
 	return (0);
 }

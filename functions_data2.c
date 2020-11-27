@@ -9,15 +9,14 @@
 void exe(char **args, char *str)
 {
 	int status, i = 0;
-	pid_t childn = fork();
-	char *path = _getenv(args[0]);
+	pid_t childn;
+	char *path = NULL;
 
+	childn = fork();
 	if (childn == -1)
 	{
 		perror("Error");
-		while (args[i])
-			free(args[i++]);
-		free(args);
+		free_mem_string(args);
 		exit(EXIT_FAILURE);
 	}
 	if (childn == 0)
@@ -25,14 +24,13 @@ void exe(char **args, char *str)
 		if (args[0][0] == '/')
 		{
 
-			if (execve(args[0], args, NULL) == 1)
-				exit(EXIT_SUCCESS);
+			execve(args[0], args, NULL);
 		}
+		path = _getenv(args[0]);
 		if (path)
 		{
 			args[0] = _strdup(path);
 			execve(args[0], args, NULL);
-			exit(EXIT_SUCCESS);
 		}
 		else
 		{
@@ -46,7 +44,11 @@ void exe(char **args, char *str)
 		}
 	}
 	else
+	{
+		free_mem_string(args);
+		free(str);
 		wait(&status);
+	}
 }
 
 /**
@@ -55,27 +57,15 @@ void exe(char **args, char *str)
  *Return: void
  */
 
-void env(char *str)
+int env()
 {
-	int status, x = 0;
-	pid_t childn;
+	int  x = 0;
 
-	childn = fork();
-	if (childn == -1)
-	{
-		perror("Error");
-		free(str);
-		exit(EXIT_FAILURE);
-	}
-	if (childn == 0)
-	{
-		while (environ && environ[x])
+	while (environ && environ[x])
 		{
 			printf("%s\n", environ[x]);
 			x++;
 		}
-		exit(EXIT_SUCCESS);
-	}
-	else
-		wait(&status);
+	return (0);
+
 }

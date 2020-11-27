@@ -10,7 +10,7 @@
 char *getpath(const char *direction)
 {
 	int index;
-	char *tmp, **tmp2, *rt = NULL;
+	char *tmp = NULL, **tmp2 = NULL, *rt = NULL;
 
 	if (direction)
 	{
@@ -75,8 +75,8 @@ int ubicationpath(const char *direction)
 
 char *_getenv(char *direction)
 {
-	char *name = "PATH", *route;
-	char *getenvp, **directory;
+	char *name = "PATH", *route = NULL;
+	char *getenvp = NULL, **directory = NULL;
 	int i = 0;
 	struct stat st;
 

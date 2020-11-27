@@ -9,7 +9,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
-
 extern char **environ;
 char **divide_string(char *str, char *divide);
 void exe(char **args, char *str);
@@ -22,7 +21,7 @@ char *_getenv(char *direction);
 void free_mem_string(char **args);
 void free_mem(char *str);
 int compare(char *str1, char *str2);
-void env(char *str);
+int  env();
 void invalid_command(char **args);
 
 
